@@ -1,0 +1,27 @@
+0x03: // set beeper
+0x04: // iDeviceChemistry, an index of a USB string (battery type, e.g. “PbAc”)
+0x06: // [Rechargeable, CapacityMode], where CapacityMode 2 means percent
+0x07: // In order: DesignCapacity, CapacityGranularity1, CapacityGranularity2, WarningCapacityLimit, RemainingCapacityLimit, FullChargeCapacity (all %)
+
+0x1d: // Model name
+0x1e: // Firmware version
+
+0x20:  // Battery charge and voltage
+0x21:  // Runtime
+0x22:  // Status Flags
+0x23:  // Voltage Data
+0x25:  // Load Percentage
+0x27:  // Active power W
+0x28:  // Flags: Overload, Boost, Buck (AVR)
+0x29:  // Beep Control
+0x3d:  // Some vedor flag
+0x3e:  // Designed power W/VA
+0x3f:  // Designed nominal battery voltage
+0x80:  // AudibleAlarmControl (1 disabled, 2 enabled, 3 muted)
+0x82:  // RemainingTimeLimit, seconds
+0x83:  // LowVoltageTransfer
+0x84:  // HighVolgateTransfer
+0x85:  // Test status (6 = no test initiated)
+0x86:  // DelayBeforeShutdown, seconds (0xffff = disabled)
+0x87:  // DelayBeforeStartup, seconds (0xffff = disabled)
+0x88:  // ConfigVoltage, nominal output voltage
