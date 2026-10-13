@@ -1,6 +1,6 @@
 # Powerpank*
 
-## Disconery of the serial protocol of Cyberpower Value1000El UPS
+## Discovery of the serial protocol of Cyberpower Value1000El UPS
 
 ###### *(wordplay on cyberpower, cyberpunk and powerbank)
 
@@ -89,7 +89,7 @@ This is how process loop:
 
 The last set of commands is repeated in a loop.
 
-Now, there are also some registers that can be written. As far as I can tell those are that starts with ``8``, but to write you need to change ``8`` nible to ``C``, so command to set *shutdown delay* to ``0`` and effectively turn off the output will look like this: ``43 C6 00 00 04``. The response will be only ``0x40`` ACK.
+Now, there are also some registers that can be written. As far as I can tell those are that starts with ``8``, but to write you need to change ``8`` nibble to ``C``, so command to set *shutdown delay* to ``0`` and effectively turn off the output will look like this: ``43 C6 00 00 04``. The response will be only ``0x40`` ACK.
 
 ## ESP8266 firmware
 
