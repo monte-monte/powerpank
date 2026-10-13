@@ -1,12 +1,12 @@
 # Powerpank*
 
-## Discovery of the serial protocol of Cyberpower Value1000El UPS
+## Discovery of the serial protocol of Cyberpower Value1000EI UPS
 
 ###### *(wordplay on cyberpower, cyberpunk and powerbank)
 
-I have an old-ish UPS made by Cyberpower - model "Value 1000El" that has USB and RS-232 ports to communicate with a PC. USB protocol is supported in NUT, and there are a number of vibecoded projects for ESP32-S3 (that has USB host support) that will let you put it on network without needing a linux computer. But I wanted to use an old-simple ESP8266 and talk to it directly via serial protocol.
+I have an old-ish UPS made by Cyberpower - model "Value1000EI" that has USB and RS-232 ports to communicate with a PC. USB protocol is supported in NUT, and there are a number of vibecoded projects for ESP32-S3 (that has USB host support) that will let you put it on network without needing a linux computer. But I wanted to use an old-simple ESP8266 and talk to it directly via serial protocol.
 
-Inside this UPS has an STM ST7-core MCU that communicates to the main MCU via pair of optocouplers and exposes the control to a PC via USB HID protocol. RS-232 port in form of DB9 connector has it's own inverting circuit, but the ST7 MCU communicates via normal UART at 2400(!) baud rate with standard settings of 8N1. 
+Inside this UPS has ST72F60E1M1 - an 8 bit STM ST7-core MCU that communicates to the main MCU via a pair of optocouplers and exposes the control to a PC via USB HID protocol. RS-232 port in form of DB9 connector has it's own inverting circuit, but the ST7 MCU communicates via normal UART at 2400(!) baud rate with standard settings of 8N1. 
 
 So I connected two USB serials to TX and RX to sniff both request and response. I noticed that when UPS is unplugged from mains power its main MCU only works while the output is enabled. Once it is disabled either via switch on the front panel or via shutdown command, it also loses power, so the USB MCU keeps knocking on the serial trying to get the answer until the main chip responds again. (USB MCU gets it's power from USB, since it's galvanically isolated from the rest of UPS electronics)
 
@@ -96,3 +96,7 @@ Now, there are also some registers that can be written. As far as I can tell tho
 For whatever unexplainable reason I decided to write a custom external component for ESPHome for this thing, while it would be much easier to write a simple MQTT client firmware. The worst part was debugging it and making UART timings work to not miss and data in replies. (Each character takes a little longer than 4ms, plus extra delays after ACKs)
 
 The external component files can be found in ``cyberpower`` folder.
+
+## Supported models
+
+From what info I could gather I suppose that this protocol should work for all *Value* models, and the exact series is Value600EI/800EI/1000EI, which as I understand are only different in the maximum power output.
